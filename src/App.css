@@ -18,6 +18,11 @@
   border: solid 1px grey;
 }
 
+.card--hide {
+  background-image: url("./assets/watercolor.png");
+  background-size: cover;
+}
+
 .nav {
   display: -webkit-box;
   display: -ms-flexbox;

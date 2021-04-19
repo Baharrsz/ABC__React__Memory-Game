@@ -13,6 +13,11 @@
   margin: 1vw;
   border-radius: 10px;
   border: solid 1px grey;
+
+  &--hide {
+    background-image: url("./assets/watercolor.png");
+    background-size: cover;
+  }
 }
 
 .nav {

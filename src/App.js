@@ -82,8 +82,22 @@ function createCards(cardNum, colorNames) {
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { cards: createCards(16, colorNames) };
+    this.state = {
+      cards: createCards(16, colorNames),
+      display: [],
+    };
   }
+  cardClick = (click) => {
+    const { display } = this.state;
+    const len = display.length;
+    if (display[len - 1] === display[len - 2] || len % 2 === 1) {
+      this.setState({ display: [...display, click.target.id] });
+    } else
+      this.setState({
+        display: [...display.slice(0, len - 2), click.target.id],
+      });
+  };
+
   render() {
     return (
       <div className="App">
@@ -91,8 +105,11 @@ class App extends Component {
           <span>Memory Game</span>
           <button>New Game</button>
         </nav>
-        <DisplayCards cards={this.state.cards} />
-        {/* <div className="card" style={{ backgroundColor: "tomato" }}></div> */}
+        <DisplayCards
+          cards={this.state.cards}
+          display={this.state.display}
+          cardClick={this.cardClick}
+        />
       </div>
     );
   }
