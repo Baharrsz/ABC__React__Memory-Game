@@ -1,0 +1,22 @@
+.App {
+  text-align: center;
+}
+
+.deck {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 10vw;
+  height: 10vw;
+  margin: 1vw;
+  border-radius: 10px;
+  border: solid 1px grey;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 2vw;
+}
