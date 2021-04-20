@@ -88,9 +88,21 @@ class App extends Component {
     };
   }
   cardClick = (click) => {
+    //Ignoring clicks on cards that are displaying
+    if (click.target.classList.contains("card--display")) return;
+
     const { display } = this.state;
     const len = display.length;
-    if (display[len - 1] === display[len - 2] || len % 2 === 1) {
+
+    let last = this.state.cards.find((card) => card.id === display[len - 1]);
+    if (last) last = last.color;
+
+    let beforeLast = this.state.cards.find(
+      (card) => card.id === display[len - 2]
+    );
+    if (beforeLast) beforeLast = beforeLast.color;
+
+    if (last === beforeLast || len % 2 === 1) {
       this.setState({ display: [...display, click.target.id] });
     } else
       this.setState({
