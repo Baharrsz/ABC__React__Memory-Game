@@ -2,59 +2,6 @@ import React, { Component } from "react";
 import "./App.css";
 import DisplayCards from "./DisplayCards";
 
-const colorNames = [
-  "lightsalmon",
-  "darksalmon",
-  "indianred",
-  "crimson",
-  "firebrick",
-  "red",
-  "darkred",
-  "orangered",
-  "gold",
-  "darkorange",
-  "khaki",
-  "darkkhaki",
-  "yellow",
-  "charteuse",
-  "lime",
-  "green",
-  "darkgreen",
-  "greenyellow",
-  "yellowgreen",
-  "springgreen",
-  "palegreen",
-  "mediumseagreen",
-  "seagreen",
-  "olive",
-  "darkolivegreen",
-  "olivedrab",
-  "aqua",
-  "turqoise",
-  "teal",
-  "deepskyblue",
-  "dodgerblue",
-  "steelblue",
-  "royalblue",
-  "blue",
-  "navy",
-  "mediumslateblue",
-  "violet",
-  "fuchsia",
-  "mediumpurple",
-  "blueviolet",
-  "darkviolet",
-  "darkmagenta",
-  "indigo",
-  "lightpink",
-  "hotpink",
-  "deeppink",
-  "gainsboro",
-  "dimgray",
-  "black",
-  "white",
-];
-
 function shuffle(array) {
   let order = [...Array(array.length).keys()];
   let shuffled = [];
@@ -66,7 +13,59 @@ function shuffle(array) {
   return shuffled;
 }
 
-function createCards(cardNum, colorNames) {
+function createCards(cardNum) {
+  const colorNames = [
+    "lightsalmon",
+    "darksalmon",
+    "indianred",
+    "crimson",
+    "firebrick",
+    "red",
+    "darkred",
+    "orangered",
+    "gold",
+    "darkorange",
+    "khaki",
+    "darkkhaki",
+    "yellow",
+    "charteuse",
+    "lime",
+    "green",
+    "darkgreen",
+    "greenyellow",
+    "yellowgreen",
+    "springgreen",
+    "palegreen",
+    "mediumseagreen",
+    "seagreen",
+    "olive",
+    "darkolivegreen",
+    "olivedrab",
+    "aqua",
+    "turqoise",
+    "teal",
+    "deepskyblue",
+    "dodgerblue",
+    "steelblue",
+    "royalblue",
+    "blue",
+    "navy",
+    "mediumslateblue",
+    "violet",
+    "fuchsia",
+    "mediumpurple",
+    "blueviolet",
+    "darkviolet",
+    "darkmagenta",
+    "indigo",
+    "lightpink",
+    "hotpink",
+    "deeppink",
+    "gainsboro",
+    "dimgray",
+    "black",
+    "white",
+  ];
   cardNum = cardNum / 2;
   let colors = [];
   for (let i = 1; i <= cardNum; i++) {
@@ -83,7 +82,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cards: createCards(16, colorNames),
+      cards: createCards(16),
       display: [],
     };
   }
@@ -110,12 +109,16 @@ class App extends Component {
       });
   };
 
+  resetGame = () => {
+    this.setState({ cards: createCards(16), display: [] });
+  };
+
   render() {
     return (
       <div className="App">
         <nav className="nav">
           <span>Memory Game</span>
-          <button>New Game</button>
+          <button onClick={this.resetGame}>New Game</button>
         </nav>
         <DisplayCards
           cards={this.state.cards}
