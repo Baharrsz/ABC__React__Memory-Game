@@ -2,90 +2,15 @@ import React, { Component } from "react";
 import "./App.css";
 import Dialogue from "./Dialogue";
 import DisplayCards from "./DisplayCards";
-
-function shuffle(array) {
-  let order = [...Array(array.length).keys()];
-  let shuffled = [];
-  array.forEach((element) => {
-    let i = Math.floor(Math.random() * order.length);
-    shuffled[order[i]] = element;
-    order.splice(i, 1);
-  });
-  return shuffled;
-}
-
-function createCards(cardNum) {
-  const colorNames = [
-    "lightsalmon",
-    "darksalmon",
-    "indianred",
-    "crimson",
-    "firebrick",
-    "red",
-    "darkred",
-    "orangered",
-    "gold",
-    "darkorange",
-    "khaki",
-    "darkkhaki",
-    "yellow",
-    "charteuse",
-    "lime",
-    "green",
-    "darkgreen",
-    "greenyellow",
-    "yellowgreen",
-    "springgreen",
-    "palegreen",
-    "mediumseagreen",
-    "seagreen",
-    "olive",
-    "darkolivegreen",
-    "olivedrab",
-    "aqua",
-    "turquoise",
-    "teal",
-    "deepskyblue",
-    "dodgerblue",
-    "steelblue",
-    "royalblue",
-    "blue",
-    "navy",
-    "mediumslateblue",
-    "violet",
-    "fuchsia",
-    "mediumpurple",
-    "blueviolet",
-    "darkviolet",
-    "darkmagenta",
-    "indigo",
-    "lightpink",
-    "hotpink",
-    "deeppink",
-    "gainsboro",
-    "dimgray",
-    "black",
-    "white",
-  ];
-  cardNum = cardNum / 2;
-  let colors = [];
-  for (let i = 1; i <= cardNum; i++) {
-    let random = Math.floor(Math.random() * colorNames.length);
-    if (colors.indexOf(colorNames[random]) < 0) {
-      colors.push(colorNames[random], colorNames[random]);
-    } else i--;
-  }
-
-  return shuffle(colors.map((color, idx) => ({ id: `_${idx}`, color: color })));
-}
+import { createCards } from "./helpers";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // cardNum: 16,
       cards: createCards(20),
       display: [],
+      dialogueDisplay: "none",
     };
   }
 
@@ -112,14 +37,18 @@ class App extends Component {
       });
   };
 
-  // newGame = () => {
-  //   this.setState({ cards: createCards(this.state.cardNum), display: [] });
-  // };
+  resetGame = () => {
+    this.setState({ dialogueDisplay: "block" });
+  };
 
   chooseGame = (submit) => {
     submit.preventDefault();
     const cardNum = submit.target.difficulty.value;
-    this.setState({ cards: createCards(cardNum), display: [] });
+    this.setState({
+      cards: createCards(cardNum),
+      display: [],
+      dialogueDisplay: "none",
+    });
   };
 
   render() {
@@ -127,7 +56,7 @@ class App extends Component {
       <div className="App">
         <nav className="nav">
           <span>Memory Game</span>
-          <button onClick={this.newGame}>New Game</button>
+          <button onClick={this.resetGame}>New Game</button>
         </nav>
         <DisplayCards
           cards={this.state.cards}
@@ -135,7 +64,10 @@ class App extends Component {
           cardClick={this.cardClick}
         />
 
-        <Dialogue chooseGame={this.chooseGame} />
+        <Dialogue
+          chooseGame={this.chooseGame}
+          display={this.state.dialogueDisplay}
+        />
       </div>
     );
   }

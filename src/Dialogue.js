@@ -1,8 +1,8 @@
 import React from "react";
 
-function Dialogue(props) {
+function Dialogue({ chooseGame, display }) {
   return (
-    <form className="dialogue" onSubmit={props.chooseGame}>
+    <form className="dialogue" onSubmit={chooseGame} style={{ display }}>
       <label className="dialogue__label dialogue__label--main">
         Choose the difficulty level:
       </label>
