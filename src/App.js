@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import Dialogue from "./Dialogue";
 import DisplayCards from "./DisplayCards";
 
 function shuffle(array) {
@@ -42,7 +43,7 @@ function createCards(cardNum) {
     "darkolivegreen",
     "olivedrab",
     "aqua",
-    "turqoise",
+    "turquoise",
     "teal",
     "deepskyblue",
     "dodgerblue",
@@ -82,10 +83,12 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cards: createCards(16),
+      // cardNum: 16,
+      cards: createCards(20),
       display: [],
     };
   }
+
   cardClick = (click) => {
     //Ignoring clicks on cards that are displaying
     if (click.target.classList.contains("card--display")) return;
@@ -109,8 +112,14 @@ class App extends Component {
       });
   };
 
-  resetGame = () => {
-    this.setState({ cards: createCards(16), display: [] });
+  // newGame = () => {
+  //   this.setState({ cards: createCards(this.state.cardNum), display: [] });
+  // };
+
+  chooseGame = (submit) => {
+    submit.preventDefault();
+    const cardNum = submit.target.difficulty.value;
+    this.setState({ cards: createCards(cardNum), display: [] });
   };
 
   render() {
@@ -118,13 +127,15 @@ class App extends Component {
       <div className="App">
         <nav className="nav">
           <span>Memory Game</span>
-          <button onClick={this.resetGame}>New Game</button>
+          <button onClick={this.newGame}>New Game</button>
         </nav>
         <DisplayCards
           cards={this.state.cards}
           display={this.state.display}
           cardClick={this.cardClick}
         />
+
+        <Dialogue chooseGame={this.chooseGame} />
       </div>
     );
   }
