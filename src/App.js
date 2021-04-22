@@ -38,7 +38,7 @@ class App extends Component {
   };
 
   resetGame = () => {
-    this.setState({ dialogueDisplay: "block" });
+    this.setState({ dialogueDisplay: "flex" });
   };
 
   chooseGame = (submit) => {
