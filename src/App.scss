@@ -1,5 +1,5 @@
 $nav-height: 15vh;
-$deck-padding: 10vw;
+$deck-padding: 5vw;
 $card-margin: 0.5vw;
 
 //4 rows of 5 cards
@@ -80,6 +80,7 @@ $card100-width: calc(
     background-color: white;
     height: fit-content;
     padding: 3vw;
+    position: relative;
   }
 
   &__options {
@@ -87,6 +88,16 @@ $card100-width: calc(
     flex-direction: column;
     align-items: flex-start;
     padding: 2vw;
+  }
+
+  &__closeBtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    background-color: white;
+    padding: 1vw;
+    background-image: url("./assets/close.svg");
   }
 }
 
@@ -121,8 +132,8 @@ $card100-width: calc(
 
 .card {
   margin: $card-margin;
-  border-radius: 10px;
-  border: solid 1px grey;
+  border-radius: 10%;
+  box-shadow: 2px 2px 5px gray;
 
   &:before {
     content: "";
@@ -132,7 +143,7 @@ $card100-width: calc(
 
   &--hide {
     background-image: url("./assets/watercolor.png");
-    background-size: cover;
+    background-size: 200%;
   }
 
   &--20 {

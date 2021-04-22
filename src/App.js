@@ -37,9 +37,9 @@ class App extends Component {
       });
   };
 
-  resetGame = () => {
-    this.setState({ dialogueDisplay: "flex" });
-  };
+  resetGame = () => this.setState({ dialogueDisplay: "flex" });
+
+  closeDialogue = () => this.setState({ dialogueDisplay: "none" });
 
   chooseGame = (submit) => {
     submit.preventDefault();
@@ -66,6 +66,7 @@ class App extends Component {
 
         <Dialogue
           chooseGame={this.chooseGame}
+          closeDialogue={this.closeDialogue}
           display={this.state.dialogueDisplay}
         />
       </div>

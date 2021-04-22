@@ -1,9 +1,14 @@
 import React from "react";
 
-function Dialogue({ chooseGame, display }) {
+function Dialogue({ chooseGame, display, closeDialogue }) {
   return (
     <form className="dialogue" onSubmit={chooseGame} style={{ display }}>
       <div className="dialogue__content">
+        <button
+          className="dialogue__closeBtn"
+          type="button"
+          onClick={closeDialogue}
+        ></button>
         <label className="dialogue__label dialogue__label--main">
           Choose the difficulty level:
         </label>
@@ -33,7 +38,9 @@ function Dialogue({ chooseGame, display }) {
             cards)
           </label>
         </div>
-        <button className="dialogue__btn">Start Game</button>
+        <button className="dialogue__startBtn" type="submit">
+          Start Game
+        </button>
       </div>
     </form>
   );
