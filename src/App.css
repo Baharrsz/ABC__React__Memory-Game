@@ -204,7 +204,12 @@
 }
 
 .card--matching {
-  border: 1px solid red;
+  -webkit-transform: scale(1.03);
+          transform: scale(1.03);
+  -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.37, -0.3, 0.68, 3);
+  transition: -webkit-transform 0.6s cubic-bezier(0.37, -0.3, 0.68, 3);
+  transition: transform 0.6s cubic-bezier(0.37, -0.3, 0.68, 3);
+  transition: transform 0.6s cubic-bezier(0.37, -0.3, 0.68, 3), -webkit-transform 0.6s cubic-bezier(0.37, -0.3, 0.68, 3);
 }
 
 .card--20 {
