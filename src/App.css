@@ -1,6 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orelega+One&display=swap");
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+}
+
+.button {
+  width: 10vw;
+  height: 3vw;
+  border: none;
+  border-radius: 5%;
+  font-family: "Nunito";
+  font-weight: 700;
+  font-size: 1rem;
+  background-color: snow;
+  color: indianred;
 }
 
 .App {
@@ -37,14 +51,19 @@
       -ms-flex-align: center;
           align-items: center;
   background-color: indianred;
+  font-family: "Orelega One";
+  color: snow;
+  font-size: 1.5em;
 }
 
 .dialogue {
   width: 100%;
   height: 100%;
-  background-color: rgba(139, 137, 137, 0.5);
-  position: absolute;
+  position: fixed;
   top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -53,16 +72,54 @@
           align-items: center;
 }
 
-.dialogue__content {
-  background-color: white;
+.dialogue__outside {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  background-color: rgba(139, 137, 137, 0.5);
+  z-index: 0;
+}
+
+.dialogue__form {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  padding: 3vw;
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 2%;
+  background-color: white;
+  padding: 3vw;
+  z-index: 1;
+}
+
+.dialogue__label {
+  font-family: "Nunito";
+  font-weight: 400;
+  font-size: 1em;
+}
+
+.dialogue__label--main {
+  font-weight: 700;
+  font-size: 1.5em;
 }
 
 .dialogue__options {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -78,12 +135,17 @@
 
 .dialogue__closeBtn {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 2%;
+  right: 2%;
   border: none;
   background-color: white;
   padding: 1vw;
   background-image: url("./assets/close.svg");
+}
+
+.dialogue__startBtn {
+  background-color: indianred;
+  color: snow;
 }
 
 .deck {

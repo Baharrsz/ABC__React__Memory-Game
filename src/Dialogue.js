@@ -2,8 +2,9 @@ import React from "react";
 
 function Dialogue({ chooseGame, display, closeDialogue }) {
   return (
-    <form className="dialogue" onSubmit={chooseGame} style={{ display }}>
-      <div className="dialogue__content">
+    <div className="dialogue" style={{ display }}>
+      <div className="dialogue__outside" onClick={closeDialogue}></div>
+      <form className="dialogue__form" onSubmit={chooseGame}>
         <button
           className="dialogue__closeBtn"
           type="button"
@@ -38,11 +39,11 @@ function Dialogue({ chooseGame, display, closeDialogue }) {
             cards)
           </label>
         </div>
-        <button className="dialogue__startBtn" type="submit">
+        <button className="dialogue__startBtn button" type="submit">
           Start Game
         </button>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 }
 
