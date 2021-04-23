@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import Nav from "./Nav";
 import Dialogue from "./Dialogue";
 import DisplayCards from "./DisplayCards";
 import { createCards } from "./helpers";
@@ -49,6 +50,7 @@ class App extends Component {
       this.setState({ matching: [last.id, click.target.id] });
     }
 
+    //Updating the score
     this.setState(
       (prevState) => {
         return { clickCount: prevState.clickCount + 1 };
@@ -90,19 +92,13 @@ class App extends Component {
     const increment = matched
       ? 100 / (2 * cardNum)
       : -(100 / (2 * cardNum * steps));
-    return +(score + increment).toFixed(0);
+    return +(score + increment).toFixed(1);
   };
 
   render() {
     return (
       <div className="App">
-        <nav className="nav">
-          <span>Memory Game</span>
-          <span>Score: {this.state.score}</span>
-          <button className="button nav__btn" onClick={this.resetGame}>
-            New Game
-          </button>
-        </nav>
+        <Nav score={this.state.score} resetGame={this.resetGame} />
         <DisplayCards
           cards={this.state.cards}
           display={this.state.display}
