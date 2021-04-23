@@ -50,7 +50,7 @@ $card100-width: calc(
 }
 
 .button {
-  width: 10vw;
+  min-width: 10vw;
   height: 3vw;
   border: none;
   border-radius: 5%;
@@ -193,6 +193,10 @@ $card100-width: calc(
   &--hide {
     background-image: url("./assets/watercolor.png");
     background-size: 200%;
+  }
+
+  &--matching {
+    border: 1px solid red;
   }
 
   &--20 {

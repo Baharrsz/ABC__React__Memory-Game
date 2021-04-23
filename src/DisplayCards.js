@@ -1,10 +1,10 @@
 import React from "react";
 
-function DisplayCards({ cards, display, cardClick }) {
+function DisplayCards({ cards, display, matching, cardClick }) {
   let cardElements = cards.map((card) => {
-    const className = display.includes(card.id)
-      ? `card card--${cards.length} card--display`
-      : `card card--${cards.length} card--hide`;
+    let className = `card card--${cards.length} `;
+    className += display.includes(card.id) ? "card--display " : "card--hide ";
+    className += matching.includes(card.id) ? "card--matching" : "";
     return (
       <div
         className={className}
