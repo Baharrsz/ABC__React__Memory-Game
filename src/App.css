@@ -1,8 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Orelega+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  font-family: "Nunito";
 }
 
 .button {
@@ -10,7 +12,6 @@
   height: 3vw;
   border: none;
   border-radius: 5%;
-  font-family: "Nunito";
   font-weight: 700;
   font-size: 1rem;
   background-color: snow;
@@ -51,9 +52,17 @@
       -ms-flex-align: center;
           align-items: center;
   background-color: indianred;
-  font-family: "Orelega One";
   color: snow;
   font-size: 1.5em;
+  z-index: 1;
+}
+
+.nav__title {
+  font-family: "Orelega One";
+}
+
+.nav__score {
+  font-weight: 600;
 }
 
 .dialogue {
@@ -78,7 +87,7 @@
   position: fixed;
   top: 0;
   background-color: rgba(139, 137, 137, 0.5);
-  z-index: 0;
+  z-index: 2;
 }
 
 .dialogue__form {
@@ -102,11 +111,10 @@
   border-radius: 2%;
   background-color: white;
   padding: 3vw;
-  z-index: 1;
+  z-index: 3;
 }
 
 .dialogue__label {
-  font-family: "Nunito";
   font-weight: 400;
   font-size: 1em;
 }
@@ -212,6 +220,17 @@
   transition: transform 0.6s cubic-bezier(0.37, -0.3, 0.68, 3), -webkit-transform 0.6s cubic-bezier(0.37, -0.3, 0.68, 3);
 }
 
+.card--animation {
+  border-radius: 50%;
+  -webkit-transform: scale(3);
+          transform: scale(3);
+  opacity: 0;
+  -webkit-transition: border-radius 1s, opacity 2s, -webkit-transform 2s;
+  transition: border-radius 1s, opacity 2s, -webkit-transform 2s;
+  transition: border-radius 1s, transform 2s, opacity 2s;
+  transition: border-radius 1s, transform 2s, opacity 2s, -webkit-transform 2s;
+}
+
 .card--20 {
   width: calc( min( (100vh - 15vh - 5vw - 0.5vw * 8) / 4, (100vw - 5vw - 0.5vw * 10) / 5 ));
 }
@@ -230,5 +249,61 @@
 
 .card--100 {
   width: calc( min( (100vh - 15vh - 5vw - 0.5vw * 20) / 10, (100vw - 5vw - 0.5vw * 20) / 10 ));
+}
+
+.celebration {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: rgba(139, 137, 137, 0.5);
+  color: yellow;
+  text-shadow: 1px 1px 1px grey;
+  font-weight: 700;
+  font-size: 1em;
+  z-index: 2;
+}
+
+.celebration__main {
+  font-family: "Permanent Marker", cursive;
+  -webkit-transition: -webkit-transform 2s 0s;
+  transition: -webkit-transform 2s 0s;
+  transition: transform 2s 0s;
+  transition: transform 2s 0s, -webkit-transform 2s 0s;
+  -webkit-transform: scale(3);
+          transform: scale(3);
+}
+
+.celebration__score {
+  -webkit-transform: scale(2.5);
+          transform: scale(2.5);
+  -webkit-transition: -webkit-transform 2s 1s;
+  transition: -webkit-transform 2s 1s;
+  transition: transform 2s 1s;
+  transition: transform 2s 1s, -webkit-transform 2s 1s;
+  padding: 5vh 0 10vh;
+}
+
+.celebration__click {
+  color: lightgoldenrodyellow;
+  -webkit-transform: scale(2);
+          transform: scale(2);
+  -webkit-transition: -webkit-transform 0s 3s;
+  transition: -webkit-transform 0s 3s;
+  transition: transform 0s 3s;
+  transition: transform 0s 3s, -webkit-transform 0s 3s;
 }
 /*# sourceMappingURL=App.css.map */

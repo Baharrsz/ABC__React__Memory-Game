@@ -1,8 +1,9 @@
 import React from "react";
 
-function Dialogue({ chooseGame, display, closeDialogue }) {
+function Dialogue({ chooseGame, show, closeDialogue }) {
+  const display = { display: show ? "flex" : "none" };
   return (
-    <div className="dialogue" style={{ display }}>
+    <div className="dialogue" style={display}>
       <div className="dialogue__outside" onClick={closeDialogue}></div>
       <form className="dialogue__form" onSubmit={chooseGame}>
         <button

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
 import Nav from "./Nav";
-import Dialogue from "./Dialogue";
 import DisplayCards from "./DisplayCards";
+import Dialogue from "./Dialogue";
+import Celebration from "./Celebration";
 import { createCards } from "./helpers";
 
 class App extends Component {
@@ -12,9 +13,11 @@ class App extends Component {
       cards: createCards(20),
       display: [],
       matching: [],
-      dialogueDisplay: "none",
+      showDialogue: false,
+      showCelebration: false,
       clickCount: 0,
       score: 100,
+      animatingCards: [],
     };
   }
 
@@ -22,16 +25,12 @@ class App extends Component {
     //Ignoring clicks on cards that are displaying
     if (click.target.classList.contains("card--display")) return;
 
-    let matched = false;
-
-    const { display } = this.state;
+    const { cards, display } = this.state;
     const len = display.length;
 
-    let last = this.state.cards.find((card) => card.id === display[len - 1]);
+    let last = cards.find((card) => card.id === display[len - 1]);
 
-    let beforeLast = this.state.cards.find(
-      (card) => card.id === display[len - 2]
-    );
+    let beforeLast = cards.find((card) => card.id === display[len - 2]);
 
     //Showing and hiding cards
     if (
@@ -44,10 +43,25 @@ class App extends Component {
         display: [...display.slice(0, len - 2), click.target.id],
       });
 
-    //Animation of matching cards
+    let matched = false;
+    //Animation of matching cards and final celebration
     if (len % 2 === 1 && last.color === click.target.style.backgroundColor) {
       matched = true;
-      this.setState({ matching: [last.id, click.target.id] });
+      this.setState({ matching: [last.id, click.target.id] }, () => {
+        if (this.state.display.length === cards.length) {
+          this.setState({ showCelebration: true });
+
+          //celebration animation
+          let cardId = cards.length;
+          let intervalId = setInterval(() => {
+            cardId--;
+            if (cardId === 0) clearInterval(intervalId);
+            this.setState({
+              animatingCards: [...this.state.animatingCards, `_${cardId}`],
+            });
+          }, 1000);
+        }
+      });
     }
 
     //Updating the score
@@ -70,9 +84,13 @@ class App extends Component {
     );
   };
 
-  resetGame = () => this.setState({ dialogueDisplay: "flex" });
+  openPopUp = () => this.setState({ showDialogue: true });
 
-  closeDialogue = (event) => this.setState({ dialogueDisplay: "none" });
+  closePopUp = (windowName) => {
+    let update = {};
+    update[`show${windowName}`] = false;
+    this.setState(update);
+  };
 
   chooseGame = (submit) => {
     submit.preventDefault();
@@ -81,9 +99,11 @@ class App extends Component {
       cards: createCards(cardNum),
       display: [],
       matching: [],
-      dialogueDisplay: "none",
+      showDialogue: false,
+      showCelebration: false,
       clickCount: 0,
       score: 100,
+      animatingCards: [],
     });
   };
 
@@ -98,19 +118,29 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Nav score={this.state.score} resetGame={this.resetGame} />
+        <Nav score={this.state.score} resetGame={this.openPopUp} />
         <DisplayCards
           cards={this.state.cards}
           display={this.state.display}
           matching={this.state.matching}
           cardClick={this.cardClick}
+          animatingCards={this.state.animatingCards}
         />
-
         <Dialogue
           chooseGame={this.chooseGame}
-          closeDialogue={this.closeDialogue}
-          display={this.state.dialogueDisplay}
+          closeDialogue={() => this.closePopUp("Dialogue")}
+          show={this.state.showDialogue}
         />
+        {!this.state.showCelebration ? null : (
+          <Celebration
+            // show={this.state.showCelebration}
+            endCelebration={() => {
+              this.closePopUp("Celebration");
+              this.openPopUp();
+            }}
+            score={this.state.score}
+          />
+        )}
       </div>
     );
   }
