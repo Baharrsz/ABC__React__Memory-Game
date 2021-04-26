@@ -9,6 +9,7 @@ import { createCards } from "./helpers";
 class App extends Component {
   constructor(props) {
     super(props);
+    this.intervalId = undefined;
     this.state = {
       cards: createCards(20),
       display: [],
@@ -43,9 +44,10 @@ class App extends Component {
         display: [...display.slice(0, len - 2), click.target.id],
       });
 
-    let matched = false;
     //Animation of matching cards and final celebration
-    if (len % 2 === 1 && last.color === click.target.style.backgroundColor) {
+    let matched = false;
+    let clickedClr = cards.find((card) => card.id === click.target.id).color;
+    if (len % 2 === 1 && last.color === clickedClr) {
       matched = true;
       this.setState({ matching: [last.id, click.target.id] }, () => {
         if (this.state.display.length === cards.length) {
@@ -53,9 +55,9 @@ class App extends Component {
 
           //celebration animation
           let cardId = cards.length;
-          let intervalId = setInterval(() => {
+          this.intervalId = setInterval(() => {
             cardId--;
-            if (cardId === 0) clearInterval(intervalId);
+            if (cardId === 0) clearInterval(this.intervalId);
             this.setState({
               animatingCards: [...this.state.animatingCards, `_${cardId}`],
             });
@@ -94,6 +96,11 @@ class App extends Component {
 
   chooseGame = (submit) => {
     submit.preventDefault();
+
+    //Stop celebration animation from the previous game
+    clearInterval(this.intervalId);
+
+    //Reset the game
     const cardNum = submit.target.difficulty.value;
     this.setState({
       cards: createCards(cardNum),

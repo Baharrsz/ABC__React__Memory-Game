@@ -11,11 +11,14 @@ function shuffle(array) {
 
 function colorPicker(cardNum) {
   let colors = [];
-  for (let i = 1; i <= cardNum; i++) {
-    const r = Math.floor(Math.random() * 256);
-    const g = Math.floor(Math.random() * 256);
-    const b = Math.floor(Math.random() * 256);
-    colors.push(`rgb(${r}, ${g}, ${b})`);
+  let sArray = [20, 40, 60, 80, 100];
+  let h = Math.floor(Math.random() * (360 / cardNum));
+  for (let i = 0; i < cardNum; i++) {
+    h = h + Math.floor(360 / cardNum);
+    let s = sArray[i % 4];
+    let l = 20 + Math.floor(Math.random() * 60);
+
+    colors.push(`hsl(${h}, ${s}%, ${l}%)`);
   }
   return colors;
 }
