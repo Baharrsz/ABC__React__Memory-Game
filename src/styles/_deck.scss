@@ -1,0 +1,28 @@
+.deck {
+  height: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+
+  &--20 {
+    max-width: calc(#{$card-margin} * 10 + #{$card20-width} * 5);
+  }
+
+  &--30 {
+    max-width: calc(#{$card-margin} * 12 + #{$card30-width} * 6);
+  }
+
+  &--50 {
+    max-width: calc(#{$card-margin} * 20 + #{$card50-width} * 10);
+  }
+
+  &--70 {
+    max-width: calc(#{$card-margin} * 20 + #{$card70-width} * 10);
+  }
+
+  &--100 {
+    max-width: calc(#{$card-margin} * 20 + #{$card100-width} * 10);
+  }
+}

@@ -1,0 +1,65 @@
+/* This file includes variables, fonts and keyframes */
+
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orelega+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+
+$nav-height: 15vh;
+$deck-padding: 5vw;
+$card-margin: 0.5vw;
+
+//4 rows of 5 cards
+$card20-width: calc(
+  min(
+    (100vh - #{$nav-height} - #{$deck-padding} - #{$card-margin} * 8) / 4,
+    (100vw - #{$deck-padding} - #{$card-margin} * 10) / 5
+  )
+);
+
+//5 rows of 6 cards
+$card30-width: calc(
+  min(
+    (100vh - #{$nav-height} - #{$deck-padding} - #{$card-margin} * 10) / 5,
+    (100vw - #{$deck-padding} - #{$card-margin} * 12) / 6
+  )
+);
+
+//5 rows of 10 cards
+$card50-width: calc(
+  min(
+    (100vh - #{$nav-height} - #{$deck-padding} - #{$card-margin} * 10) / 5,
+    (100vw - #{$deck-padding} - #{$card-margin} * 20) / 10
+  )
+);
+
+//7 rows of 10 cards
+$card70-width: calc(
+  min(
+    (100vh - #{$nav-height} - #{$deck-padding} - #{$card-margin} * 14) / 7,
+    (100vw - #{$deck-padding} - #{$card-margin} * 20) / 10
+  )
+);
+
+//10 rows of 10 cards
+$card100-width: calc(
+  min(
+    (100vh - #{$nav-height} - #{$deck-padding} - #{$card-margin} * 20) / 10,
+    (100vw - #{$deck-padding} - #{$card-margin} * 20) / 10
+  )
+);
+
+@keyframes celebration {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(3);
+  }
+}

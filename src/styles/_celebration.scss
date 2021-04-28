@@ -1,0 +1,34 @@
+.celebration {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  //Also set in js
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba($color: #8b8989, $alpha: 0.5);
+  color: yellow;
+  text-shadow: 1px 1px 1px grey;
+  font-weight: 700;
+  font-size: 1em;
+  z-index: 2;
+
+  &__main {
+    font-family: "Permanent Marker", cursive;
+    animation: celebration 1s ease-in-out 0s 1 normal forwards;
+  }
+
+  &__score {
+    padding: 5vh 0 10vh;
+    font-size: 0.7em;
+    animation: celebration 1s ease-in-out 1s 1 normal forwards;
+  }
+
+  &__click {
+    color: lightgoldenrodyellow;
+    font-size: 0.7em;
+    animation: celebration 1s ease-in-out 2s 1 normal forwards;
+  }
+}

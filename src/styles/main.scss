@@ -1,0 +1,53 @@
+@import "./base";
+@import "./card";
+@import "./deck";
+@import "./dialogue";
+@import "./celebration";
+
+* {
+  box-sizing: border-box;
+  font-family: "Nunito";
+}
+
+.button {
+  min-width: 10vw;
+  height: 3vw;
+  border: none;
+  border-radius: 0.5vw;
+  font-weight: 700;
+  font-size: 1rem;
+  background-color: snow;
+  color: indianred;
+}
+
+.App {
+  text-align: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: mistyrose;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav {
+  width: 100vw;
+  height: $nav-height;
+  padding: 2vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: indianred;
+  color: snow;
+  font-size: 1.5em;
+  z-index: 1; //more than cards and less than the popups
+
+  &__title {
+    font-family: "Orelega One";
+  }
+
+  &__score {
+    font-weight: 600;
+  }
+}

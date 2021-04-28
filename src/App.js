@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
+import "./styles/main.css";
 import Nav from "./Nav";
 import DisplayCards from "./DisplayCards";
 import Dialogue from "./Dialogue";
