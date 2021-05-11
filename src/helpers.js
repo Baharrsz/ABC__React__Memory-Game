@@ -31,4 +31,10 @@ function createCards(cardNum) {
   return shuffle(colors.map((color, idx) => ({ id: `_${idx}`, color: color })));
 }
 
-export { createCards };
+function calculateScore(matched, score, clickCount, cardNum) {
+  let steps = Math.ceil(clickCount / (2 * cardNum));
+  const increment = matched ? 100 / cardNum : -(100 / (2 * cardNum * steps));
+  return +(score + increment).toFixed(1);
+}
+
+export { createCards, calculateScore };

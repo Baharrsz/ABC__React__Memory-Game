@@ -9,17 +9,6 @@
   font-family: "Nunito";
 }
 
-.button {
-  min-width: 10vw;
-  height: 3vw;
-  border: none;
-  border-radius: 0.5vw;
-  font-weight: 700;
-  font-size: 1rem;
-  background-color: snow;
-  color: indianred;
-}
-
 .App {
   text-align: center;
   width: 100vw;
@@ -49,5 +38,55 @@
 
   &__score {
     font-weight: 600;
+  }
+
+  &__btns {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &__question {
+    width: 2.5vw;
+    height: 2.5vw;
+    margin-left: 1vw;
+
+    border-radius: 50%;
+    border: none;
+
+    background-image: url("../assets/question.svg");
+    background-size: cover;
+  }
+}
+
+.instructions {
+  // animation: appear 1s ease-in-out 0 1 normal forwards;
+
+  &__background {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+  }
+
+  &__main {
+    width: 30vw;
+    padding: 1vh;
+    margin-right: 1vw;
+
+    position: absolute;
+    right: 0;
+    top: calc(#{$nav-height} / 2 + 2vh);
+    border-radius: 1vh;
+    z-index: 4;
+
+    background-color: snow;
+    color: indianred;
+    font-size: 1em;
+
+    transform-origin: top;
+    animation: appear 0.3s ease-in-out 0s 1 alternate none;
   }
 }

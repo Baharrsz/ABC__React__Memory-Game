@@ -4,7 +4,8 @@ import Nav from "./Nav";
 import DisplayCards from "./DisplayCards";
 import Dialogue from "./Dialogue";
 import Celebration from "./Celebration";
-import { createCards } from "./helpers";
+import { createCards, calculateScore } from "./helpers";
+import Instructions from "./Instructions";
 
 class App extends Component {
   constructor(props) {
@@ -16,10 +17,51 @@ class App extends Component {
       matching: [],
       showDialogue: false,
       showCelebration: false,
+      showInstructions: false,
       clickCount: 0,
       score: 100,
       animatingCards: [],
     };
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Nav
+          score={this.state.score}
+          resetGame={this.openPopUp}
+          showInstructions={this.showInstructions}
+        />
+
+        <Instructions
+          display={this.state.showInstructions}
+          hide={this.hideInstructions}
+        />
+
+        <DisplayCards
+          cards={this.state.cards}
+          display={this.state.display}
+          matching={this.state.matching}
+          cardClick={this.cardClick}
+          animatingCards={this.state.animatingCards}
+        />
+        <Dialogue
+          chooseGame={this.chooseGame}
+          closeDialogue={() => this.closePopUp("Dialogue")}
+          show={this.state.showDialogue}
+        />
+        {!this.state.showCelebration ? null : (
+          <Celebration
+            // show={this.state.showCelebration}
+            endCelebration={() => {
+              this.closePopUp("Celebration");
+              this.openPopUp();
+            }}
+            score={this.state.score}
+          />
+        )}
+      </div>
+    );
   }
 
   cardClick = (click) => {
@@ -74,7 +116,7 @@ class App extends Component {
       () => {
         this.setState((prevState) => {
           return {
-            score: this.calculateScore(
+            score: calculateScore(
               matched,
               prevState.score,
               this.state.clickCount,
@@ -93,6 +135,9 @@ class App extends Component {
     update[`show${windowName}`] = false;
     this.setState(update);
   };
+
+  showInstructions = () => this.setState({ showInstructions: true });
+  hideInstructions = () => this.setState({ showInstructions: false });
 
   chooseGame = (submit) => {
     submit.preventDefault();
@@ -113,44 +158,6 @@ class App extends Component {
       animatingCards: [],
     });
   };
-
-  calculateScore = (matched, score, clickCount, cardNum) => {
-    let steps = Math.ceil(clickCount / (2 * cardNum));
-    const increment = matched
-      ? 100 / (2 * cardNum)
-      : -(100 / (2 * cardNum * steps));
-    return +(score + increment).toFixed(1);
-  };
-
-  render() {
-    return (
-      <div className="App">
-        <Nav score={this.state.score} resetGame={this.openPopUp} />
-        <DisplayCards
-          cards={this.state.cards}
-          display={this.state.display}
-          matching={this.state.matching}
-          cardClick={this.cardClick}
-          animatingCards={this.state.animatingCards}
-        />
-        <Dialogue
-          chooseGame={this.chooseGame}
-          closeDialogue={() => this.closePopUp("Dialogue")}
-          show={this.state.showDialogue}
-        />
-        {!this.state.showCelebration ? null : (
-          <Celebration
-            // show={this.state.showCelebration}
-            endCelebration={() => {
-              this.closePopUp("Celebration");
-              this.openPopUp();
-            }}
-            score={this.state.score}
-          />
-        )}
-      </div>
-    );
-  }
 }
 
 export default App;
