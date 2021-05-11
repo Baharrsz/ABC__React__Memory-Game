@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import "./styles/main.css";
-import Nav from "./Nav";
-import DisplayCards from "./DisplayCards";
-import Dialogue from "./Dialogue";
-import Celebration from "./Celebration";
+import Nav from "./components/Nav";
+import DisplayCards from "./components/DisplayCards";
+import Dialogue from "./components/Dialogue";
+import Celebration from "./components/Celebration";
 import { createCards, calculateScore } from "./helpers";
-import Instructions from "./Instructions";
+import Instructions from "./components/Instructions";
 
 class App extends Component {
   constructor(props) {
